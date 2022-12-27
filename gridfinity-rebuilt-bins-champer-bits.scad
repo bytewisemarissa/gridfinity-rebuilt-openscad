@@ -29,9 +29,9 @@ $fs = 0.25;
 // number of bases along x-axis
 gridx = 1;  
 // number of bases along y-axis   
-gridy = 4;  
+gridy = 2;  
 // bin height. See bin height information and "gridz_define" below.  
-gridz = 5;   
+gridz = 4;   
 // base unit
 length = 42;
 
@@ -69,18 +69,42 @@ div_base_y = 0;
 
 // ===== Commands ===== //
 
-/*color("tomato") {
+color("tomato") {
+    difference() {
+        union() {
+            gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+                cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+            }
+            gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
+        }
+        
+        #translate([0,32,10])union(){
+            translate([0,0,19])cylinder(h=30, d=7);
+            cylinder(h=19, d=7);
+        }
 
-gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+        #translate([0,21,10])union(){
+            translate([0,0,19])cylinder(h=30, d=9.5);
+            cylinder(h=19, d=7);
+        }
 
-    cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+        #translate([0,8,10])union(){
+            translate([0,0,19])cylinder(h=30, d=12.6);
+            cylinder(h=19, d=7);
+        }
+
+        #translate([0,-8,10])union(){
+            translate([0,0,19])cylinder(h=30, d=15.9);
+            cylinder(h=19, d=7);
+        }
+
+        #translate([0,-27,10])union(){
+            translate([0,0,19])cylinder(h=30, d=19);
+            cylinder(h=19, d=7);
+        }
+    }
 }
-gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
 
-}*/
-
-//translate([0,0,8])cylinder(h=40, d=12.5);
-scale([100,100,100])polyhedron(points=[[0,0,0],[0,0,1],[1,0,1],[0,1,0],[0,,1],[1,1,1]],faces=[[0,1,2],[1,2,4,5]]);
 
 // ===== Examples =====
 

@@ -27,11 +27,11 @@ $fs = 0.25;
 
 /* [General Settings] */
 // number of bases along x-axis
-gridx = 1;  
+gridx = 3;  
 // number of bases along y-axis   
-gridy = 4;  
+gridy = 1;  
 // bin height. See bin height information and "gridz_define" below.  
-gridz = 5;   
+gridz = 10;   
 // base unit
 length = 42;
 
@@ -69,18 +69,48 @@ div_base_y = 0;
 
 // ===== Commands ===== //
 
-/*color("tomato") {
-
-gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
-
-    cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+color("tomato") {
+    difference() {
+        union() {
+            gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+                //cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop); 
+            }
+            gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
+        }
+        
+        //standard exacto handles
+        #translate([-55,-13,6])cylinder(h=118, d=9); 
+        #translate([-27.5,-13,6])cylinder(h=118, d=9); 
+        #translate([0,-13,6])cylinder(h=118, d=9);
+        
+        //large exacto handles
+        #translate([-42,0,6])cylinder(h=122, d=12.5); 
+        #translate([-14,0,6])cylinder(h=122, d=12.5);
+        
+        //c.k.s. cutter
+        #translate([-54,12.5,6])cylinder(h=144, d=10);
+        
+        //OLFA handle
+        #translate([-27.5,12,6])cylinder(h=144, d=11);
+        
+        //Titanium Scribe
+        #translate([0,12,6])cylinder(h=155, d=8);
+        
+        //Edge Tool
+        #translate([20,10,6])cylinder(h=130, d=8.5);
+        
+        //Magnet
+        #translate([20,-10,6])cylinder(h=112, d=10);
+        
+        //OLFA SAC-1
+        #translate([30,-6.15,6])cube([5.3, 12.3, 138]);
+        
+        //Tamiya Plastic Scriber II
+        #translate([42,-14,6])cube([13.5, 28, 135]);
+    }
 }
-gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
 
-}*/
 
-//translate([0,0,8])cylinder(h=40, d=12.5);
-scale([100,100,100])polyhedron(points=[[0,0,0],[0,0,1],[1,0,1],[0,1,0],[0,,1],[1,1,1]],faces=[[0,1,2],[1,2,4,5]]);
 
 // ===== Examples =====
 

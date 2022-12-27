@@ -27,11 +27,11 @@ $fs = 0.25;
 
 /* [General Settings] */
 // number of bases along x-axis
-gridx = 1;  
+gridx = 2;  
 // number of bases along y-axis   
-gridy = 4;  
+gridy = 2;  
 // bin height. See bin height information and "gridz_define" below.  
-gridz = 5;   
+gridz = 7;   
 // base unit
 length = 42;
 
@@ -69,18 +69,50 @@ div_base_y = 0;
 
 // ===== Commands ===== //
 
-/*color("tomato") {
+color("tomato") {
+    difference() {
+        union() {
+            gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+                cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+            }
+            gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
+        }
 
-gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+        //1/4" palm ratchet
+        translate([-3,18,49])rotate([90,0,-90])union(){
+            cylinder(h=12, d=39);
+            translate([0,0,-3.5])cylinder(h=18, d=19.5);
+            cylinder(h=22.5, d=9);
+        }
 
-    cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+        //3/8" palm ratchet
+        translate([-34,-18,49])rotate([90,0,90])union(){
+            cylinder(h=14, d=39);
+            translate([0,0,-3.9])cylinder(h=22, d=25);
+            cylinder(h=30.5, d=13);
+        }
+
+        //1/4" ratchet
+        translate([20,30,21])rotate([90,0,0])union(){
+            cylinder(h=14,d=26.3);
+            translate([-13.15,0,0])cube([26.3, 50, 14]);
+            translate([-6.75,0,-2.5])cube([13.5, 50, 2.5]);
+            translate([0,0,-2.5])cylinder(h=2.5,d=13.5);
+            cylinder(h=22, d=9);
+            translate([-4.5,0,0])cube([9,50,22]);
+        }
+
+        //3/8" ratchet
+        translate([20,-5,21])rotate([90,0,0])union(){
+            cylinder(h=19.5,d=34.8);
+            translate([-17.4,0,0])cube([34.8, 50, 19.5]);
+            translate([-10.75,0,-2.5])cube([21.5, 50, 2.5]);
+            translate([0,0,-2.5])cylinder(h=2.5,d=21.5);
+            cylinder(h=30.5, d=13);
+            translate([-6.5,0,0])cube([13,50,30.5]);
+        }
+    }
 }
-gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
-
-}*/
-
-//translate([0,0,8])cylinder(h=40, d=12.5);
-scale([100,100,100])polyhedron(points=[[0,0,0],[0,0,1],[1,0,1],[0,1,0],[0,,1],[1,1,1]],faces=[[0,1,2],[1,2,4,5]]);
 
 // ===== Examples =====
 

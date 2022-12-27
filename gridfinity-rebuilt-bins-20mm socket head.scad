@@ -69,18 +69,27 @@ div_base_y = 0;
 
 // ===== Commands ===== //
 
-/*color("tomato") {
-
-gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
-
-    cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+color("tomato") {
+    difference() {
+        union() {
+            gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+                cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+            }
+            gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
+        }
+    hull()translate([18,81,8])rotate([0,0,180])scale([70,162,80])polyhedron(points=[[0,0,0],[0,0,1],[1,0,1],[0,1,0],[0,1,1],[1,1,1]],faces=[[0,1,2],[1,2,5,4],[3,4,5],[0,1,4,3],[0,2,5,3]]);
+        #translate([6,-66,12])rotate([0,-20,0])cylinder(h=50, d=20);
+        #translate([6,-44,12])rotate([0,-20,0])cylinder(h=50, d=20);
+        #translate([6,-22,12])rotate([0,-20,0])cylinder(h=50, d=20);
+        #translate([6,0,12])rotate([0,-20,0])cylinder(h=50, d=20);
+        #translate([6,22,12])rotate([0,-20,0])cylinder(h=50, d=20);
+        #translate([6,44,12])rotate([0,-20,0])cylinder(h=50, d=20);
+        #translate([6,66,12])rotate([0,-20,0])cylinder(h=50, d=20);
+    }
 }
-gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
 
-}*/
 
-//translate([0,0,8])cylinder(h=40, d=12.5);
-scale([100,100,100])polyhedron(points=[[0,0,0],[0,0,1],[1,0,1],[0,1,0],[0,,1],[1,1,1]],faces=[[0,1,2],[1,2,4,5]]);
+
 
 // ===== Examples =====
 

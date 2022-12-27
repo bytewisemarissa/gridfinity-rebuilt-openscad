@@ -27,11 +27,12 @@ $fs = 0.25;
 
 /* [General Settings] */
 // number of bases along x-axis
-gridx = 1;  
+gridx = 2;  
 // number of bases along y-axis   
-gridy = 4;  
+gridy = 1;  
 // bin height. See bin height information and "gridz_define" below.  
-gridz = 5;   
+gridz = 10
+;   
 // base unit
 length = 42;
 
@@ -69,18 +70,40 @@ div_base_y = 0;
 
 // ===== Commands ===== //
 
-/*color("tomato") {
-
-gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
-
-    cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+color("tomato") {
+    difference() {
+        union() {
+            gridfinityInit(gridx, gridy, height(gridz, gridz_define, enable_lip, enable_zsnap), height_internal, length) {
+                cutEqual(n_divx = divx, n_divy = divy, style_tab = style_tab, enable_scoop = enable_scoop);
+            }
+            gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
+        }
+        
+        //6.7mm holes - 11 min
+        xStep = 22;
+        yStep = 14;
+        
+        xStart = -34;
+        yStart = -14;
+        for(i=[0:2]){
+            for(j=[0:3]){
+                x = xStart + (xStep * j) + (((i)%2) * (yStep/2+3.35));
+                y = yStart + (yStep * i);
+                if(i == 1){
+                    if(j == 3){
+                        //skip
+                    } else {
+                        #translate([x,y,6])cylinder(h=100, d=6.7);
+                    }
+                } else {
+                    #translate([x,y,6])cylinder(h=100, d=6.7);
+                }
+            }
+        }
+    }
 }
-gridfinityBase(gridx, gridy, length, div_base_x, div_base_y, style_hole);
 
-}*/
 
-//translate([0,0,8])cylinder(h=40, d=12.5);
-scale([100,100,100])polyhedron(points=[[0,0,0],[0,0,1],[1,0,1],[0,1,0],[0,,1],[1,1,1]],faces=[[0,1,2],[1,2,4,5]]);
 
 // ===== Examples =====
 
